@@ -19,12 +19,14 @@
   "author": "Steven Randolph Ness <sness@sness.net>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
     "compression": "^1.7.4",
-    "helmet": "^7.1.0",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3",
     "nodemon": "^3.0.2"
   },
   "engines": {

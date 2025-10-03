@@ -3,9 +3,25 @@ const path = require('path');
 const compression = require('compression');
 const helmet = require('helmet');
 const cors = require('cors');
+const livereload = require('livereload');
+const connectLivereload = require('connect-livereload');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Setup livereload in development
+if (process.env.NODE_ENV !== 'production') {
+    const liveReloadServer = livereload.createServer();
+    liveReloadServer.watch(path.join(__dirname, 'public'));
+
+    liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            liveReloadServer.refresh("/");
+        }, 100);
+    });
+
+    app.use(connectLivereload());
+}
 
 // Security middleware
 app.use(helmet({
