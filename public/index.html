@@ -4,366 +4,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>doi.bio - Intelligence Augmentation for Molecular Discovery</title>
-    <meta name="description" content="Where papers meet proteins. doi.bio is the unified workspace for structural biologists, combining AI-powered literature analysis with molecular visualization.">
+    <meta name="description" content="doi.bio unifies literature intelligence and molecular context so structural biologists can ship decisions faster.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Mol* (MolStar) Viewer -->
     <script type="text/javascript" src="https://unpkg.com/molstar@3.0.0/build/viewer/molstar.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="top">
         <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">doi.bio</span>
+            <a href="#top" class="nav-logo">doi.bio</a>
+            <div class="nav-links">
+                <ul class="nav-menu">
+                    <li><a href="#problem" class="nav-link">Problem</a></li>
+                    <li><a href="#solution" class="nav-link">Solution</a></li>
+                    <li><a href="#launch" class="nav-link">Launch Tracks</a></li>
+                    <li><a href="#market" class="nav-link">Market</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost nav-cta">Request Access</a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#problem" class="nav-link">Problem</a></li>
-                <li><a href="#solution" class="nav-link">Solution</a></li>
-                <li><a href="#market" class="nav-link">Market</a></li>
-                <li><a href="#team" class="nav-link">Team</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Intelligence Augmentation for 
-                    <span class="gradient-text">Molecular Discovery</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Where papers meet proteins. doi.bio is the unified workspace for structural biologists, 
-                    combining AI-powered literature analysis with molecular visualization to accelerate 
-                    drug discovery and research.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#solution" class="btn btn-primary">See How It Works</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+    <section class="hero" id="hero">
+        <div class="hero-backdrop">
+            <span class="glow glow-one"></span>
+            <span class="glow glow-two"></span>
+            <span class="glow glow-three"></span>
+        </div>
+        <div class="container hero-layout">
+            <div class="hero-copy" data-animate>
+                <span class="eyebrow">Precision-first discovery OS</span>
+                <h1>Where papers, proteins, and teams operate as one system</h1>
+                <p>doi.bio blends AI literature synthesis, interactive molecular context, and guided workflows. Teams cut onboarding time in half and make structurally-aware calls with confidence.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Request Private Preview</a>
+                    <a href="#solution" class="btn btn-text">Tour the workspace</a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat scroll-animate-scale">
-                        <span class="stat-number">200M+</span>
-                        <span class="stat-label">AlphaFold Structures</span>
+                <div class="hero-badges">
+                    <div class="badge" data-animate>
+                        <span class="badge-title">200M+</span>
+                        <span class="badge-copy">AlphaFold structures pre-indexed</span>
                     </div>
-                    <div class="stat scroll-animate-scale">
-                        <span class="stat-number">243K+</span>
-                        <span class="stat-label">PDB Entries</span>
+                    <div class="badge" data-animate>
+                        <span class="badge-title">243K+</span>
+                        <span class="badge-copy">PDB entries surfaced with context</span>
                     </div>
-                    <div class="stat scroll-animate-scale">
-                        <span class="stat-number">50%+</span>
-                        <span class="stat-label">Faster Onboarding</span>
+                    <div class="badge" data-animate>
+                        <span class="badge-title">50% faster</span>
+                        <span class="badge-copy">Ramp time for new scientists</span>
                     </div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="molecule-animation">
-                    <div class="molecule">
-                        <div class="atom atom-1"></div>
-                        <div class="atom atom-2"></div>
-                        <div class="atom atom-3"></div>
-                        <div class="atom atom-4"></div>
-                        <div class="bond bond-1"></div>
-                        <div class="bond bond-2"></div>
-                        <div class="bond bond-3"></div>
+            <div class="hero-showcase" data-animate>
+                <div class="hero-card">
+                    <div class="card-header">
+                        <span class="card-chip">Live notebook ↔ structure sync</span>
+                        <span class="card-pill">In beta</span>
+                    </div>
+                    <ul class="card-list">
+                        <li>
+                            <span class="dot"></span>
+                            AI extracts ligands, assays, and claims from papers in minutes.
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            Molecular viewer stays linked to knowledge graph slices.
+                        </li>
+                        <li>
+                            <span class="dot"></span>
+                            Workflow recipes trigger compute, capture rationale, ship to ELNs.
+                        </li>
+                    </ul>
+                    <div class="hero-highlight">
+                        <span class="hero-metric">↑68%</span>
+                        <span class="hero-caption">Higher hit confidence across design reviews</span>
+                    </div>
+                </div>
+                <div class="hero-floating" data-animate>
+                    <div class="floating-card">
+                        <span class="floating-label">Next workflow</span>
+                        <h4>Stabilize lead pocket</h4>
+                        <p>Compare AlphaFold variants, flag clashes, suggest mutagenesis experiments.</p>
+                        <div class="floating-meta">
+                            <span>∑ 4 automations</span>
+                            <span>Shared with Platform Eng</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section id="problem" class="problem">
+    <section id="problem" class="section section-dark">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Problem</h2>
-                <p class="section-subtitle">R&D lives in two places (papers & proteins), but tools don't</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card scroll-animate">
-                    <div class="problem-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14,2 14,8 20,8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10,9 9,9 8,9"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Fragmented Stack</h3>
-                    <p>PDFs, ELN notes, viewers, docking/MD, ad-hoc scripts create brittle hand-offs and lost rationale across 8-12 tools.</p>
-                </div>
-                <div class="problem-card scroll-animate">
-                    <div class="problem-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 3h18v18H3zM9 9h6v6H9z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3>Volume Shock</h3>
-                    <p>~243k PDB entries and >200M AlphaFold predictions bury signal in noise, making discovery overwhelming.</p>
-                </div>
-                <div class="problem-card scroll-animate">
-                    <div class="problem-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12,6 12,12 16,14"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Time Pressure</h3>
-                    <p>Rising R&D costs ($2.23B per asset) and pressure to make faster, better decisions every month.</p>
-                </div>
+            <header class="section-header" data-animate>
+                <span class="eyebrow">Why now</span>
+                <h2>Current discovery stacks are brittle hand-offs</h2>
+                <p>Inside every enterprise we see the same fragmentation: siloed notebooks, disconnected visualization, and AI that cannot explain itself.</p>
+            </header>
+            <div class="card-grid">
+                <article class="glass-card" data-animate>
+                    <span class="card-icon">📄</span>
+                    <h3>Fragmented knowledge</h3>
+                    <p>PDFs, ELN notes, and internal wikis rarely converge into reusable institutional memory.</p>
+                    <ul class="card-tags">
+                        <li>Manual synthesis</li>
+                        <li>Zero provenance</li>
+                        <li>Slow ramp</li>
+                    </ul>
+                </article>
+                <article class="glass-card" data-animate>
+                    <span class="card-icon">🧬</span>
+                    <h3>Static molecular context</h3>
+                    <p>Viewers isolate structure inspection from hypotheses, forcing scientists to juggle tabs.</p>
+                    <ul class="card-tags">
+                        <li>No shared state</li>
+                        <li>Redundant exports</li>
+                        <li>Missed clashes</li>
+                    </ul>
+                </article>
+                <article class="glass-card" data-animate>
+                    <span class="card-icon">⚙️</span>
+                    <h3>Ops without feedback</h3>
+                    <p>Automation scripts run blind to rationale, creating opaque pipelines and repeat errors.</p>
+                    <ul class="card-tags">
+                        <li>Hard to audit</li>
+                        <li>Limited reuse</li>
+                        <li>Slow retros</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section id="solution" class="solution">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Solution</h2>
-                <p class="section-subtitle">doi.bio unified, structure-aware workspace</p>
-            </div>
-            <div class="solution-content">
-                <div class="solution-visual scroll-animate-left">
-                    <div class="workspace-demo">
-                        <div class="left-pane">
-                            <div class="pane-header">Knowledge & Reasoning</div>
-                            <div class="content-item">
-                                <div class="item-icon">📄</div>
-                                <div class="item-text">Interlinked Obsidian-style notes</div>
-                            </div>
-                            <div class="content-item">
-                                <div class="item-icon">🤖</div>
-                                <div class="item-text">AI extracts targets/ligands/assays</div>
-                            </div>
-                            <div class="content-item">
-                                <div class="item-icon">🧠</div>
-                                <div class="item-text">Builds causal maps & proposes next steps</div>
-                            </div>
+    <section id="solution" class="section">
+        <div class="container solution-layout">
+            <div class="solution-preview" data-animate>
+                <div class="workspace-shell">
+                    <div class="workspace-top">
+                        <div class="workspace-pane">
+                            <h4>Knowledge & Reasoning</h4>
+                            <ul>
+                                <li>AI links claims ↔ ligands ↔ assays</li>
+                                <li>Decision trails auto-summarised</li>
+                                <li>Graph search over public + private corpora</li>
+                            </ul>
                         </div>
-                        <div class="right-pane">
-                            <div class="pane-header">Structure & Computation</div>
-                            <div class="content-item">
-                                <div class="item-icon">🧬</div>
-                                <div class="item-text">Live PDB/AlphaFold context</div>
-                            </div>
-                            <div class="content-item">
-                                <div class="item-icon">🎯</div>
-                                <div class="item-text">Pockets & variants analysis</div>
-                            </div>
-                            <div class="content-item">
-                                <div class="item-icon">⚡</div>
-                                <div class="item-text">One-click micro-workflows</div>
-                            </div>
+                        <div class="workspace-pane">
+                            <h4>Structure & Compute</h4>
+                            <ul>
+                                <li>Live PDB/AlphaFold overlays</li>
+                                <li>Variant clashes & pockets scored</li>
+                                <li>Micro-workflows trigger compute seamlessly</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="demo-screenshots">
-                        <img src="images/assn0.png" alt="doi.bio Interface Screenshot 1" class="demo-screenshot">
-                        <img src="images/assn1.png" alt="doi.bio Interface Screenshot 2" class="demo-screenshot">
-                    </div>
-                    <div class="molstar-viewer-container">
-                        <div class="viewer-header">
-                            <h4>Live Molecular Visualization</h4>
-                            <p>1ERM - Estrogen Receptor Alpha with Estradiol</p>
+                    <div class="molstar-panel">
+                        <div class="panel-header">
+                            <span class="panel-title">1ERM • Estrogen receptor alpha with Estradiol</span>
+                            <div class="panel-actions">
+                                <button class="panel-btn" data-action="reset">Reset</button>
+                                <button class="panel-btn" data-action="surface">Surface</button>
+                                <button class="panel-btn" data-action="ligand">Highlight ligand</button>
+                            </div>
                         </div>
                         <div id="molstar-viewer" class="molstar-viewer"></div>
-                        <div class="viewer-controls">
-                            <button class="viewer-btn" onclick="resetView()">Reset View</button>
-                            <button class="viewer-btn" onclick="toggleSurface()">Toggle Surface</button>
-                            <button class="viewer-btn" onclick="highlightLigand()">Highlight Ligand</button>
-                        </div>
                     </div>
                 </div>
-                <div class="solution-features scroll-animate-right">
-                    <div class="feature scroll-animate">
-                        <h3>Collaborative Intelligence</h3>
-                        <p>Decisions + rationale captured as reusable organizational IP</p>
+            </div>
+            <div class="solution-copy" data-animate>
+                <span class="eyebrow">How it works</span>
+                <h2>One workspace, orchestrating context and compute</h2>
+                <p>We treat insights, structures, and automations as one object model. Scientists navigate narrative and atoms without leaving the flow, while platform teams keep governance and telemetry baked in.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">🤝</span>
+                        <div>
+                            <h4>Collaborative intelligence</h4>
+                            <p>Every decision anchors to data, reviewers, and next steps to create living IP.</p>
+                        </div>
                     </div>
-                    <div class="feature scroll-animate">
-                        <h3>APIs & Automations</h3>
-                        <p>Orchestration across public sources and private compute</p>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔌</span>
+                        <div>
+                            <h4>APIs + automations</h4>
+                            <p>Trigger docking, MD, or custom pipelines with guardrails and provenance.</p>
+                        </div>
                     </div>
-                    <div class="feature scroll-animate">
-                        <h3>Human-in-the-Loop</h3>
-                        <p>Augment reasoning rather than replace it</p>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛡️</span>
+                        <div>
+                            <h4>Human-in-the-loop safety</h4>
+                            <p>LLM suggestions remain transparent, traceable, and adjustable in context.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Market Section -->
-    <section id="market" class="market">
+    <section id="launch" class="section section-highlight">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Market Opportunity</h2>
-                <p class="section-subtitle">Multi-billion dollar market with explosive growth</p>
-            </div>
-            <div class="market-content">
-                <div class="market-stats">
-                    <div class="market-stat scroll-animate">
-                        <div class="stat-value">$20.3B</div>
-                        <div class="stat-label">AI in Drug Discovery by 2030</div>
-                        <div class="stat-growth">29.7% CAGR</div>
-                    </div>
-                    <div class="market-stat scroll-animate">
-                        <div class="stat-value">$94.8B</div>
-                        <div class="stat-label">Bioinformatics Market by 2032</div>
-                        <div class="stat-growth">17% CAGR</div>
-                    </div>
-                    <div class="market-stat scroll-animate">
-                        <div class="stat-value">$6.88B</div>
-                        <div class="stat-label">3D Protein Analysis by 2034</div>
-                        <div class="stat-growth">9.4% CAGR</div>
-                    </div>
-                </div>
-                <div class="market-model scroll-animate">
-                    <h3>Bottom-Up Market Model</h3>
-                    <div class="model-item">
-                        <span class="model-label">Target Users:</span>
-                        <span class="model-value">40k-60k computational/structural scientists</span>
-                    </div>
-                    <div class="model-item">
-                        <span class="model-label">Starter SAM:</span>
-                        <span class="model-value">50k users × $1.5k ARR ≈ $75M</span>
-                    </div>
-                    <div class="model-item">
-                        <span class="model-label">Enterprise Path:</span>
-                        <span class="model-value">$50k-$250k ACV → $100M+ with ~500 logos</span>
-                    </div>
-                </div>
+            <header class="section-header" data-animate>
+                <span class="eyebrow">Activation paths</span>
+                <h2>Launch tracks tuned for modern discovery teams</h2>
+                <p>Pick the trajectory that fits your lab. Every track includes white-glove onboarding, structured training, and direct feedback into the roadmap.</p>
+            </header>
+            <div class="plan-grid">
+                <article class="plan-card" data-animate>
+                    <span class="plan-label">Starter Lab</span>
+                    <h3>Precision pilots for 3–5 scientists</h3>
+                    <ul>
+                        <li>Private workspace with shared graph</li>
+                        <li>LLM-assisted note capture & tagging</li>
+                        <li>Weekly design review support</li>
+                    </ul>
+                    <button class="btn btn-ghost">Reserve slot</button>
+                </article>
+                <article class="plan-card plan-card-primary" data-animate>
+                    <span class="plan-label">Integrated Platform</span>
+                    <h3>Unified stack for scale-up biotechs</h3>
+                    <ul>
+                        <li>Molstar orchestration + compute triggers</li>
+                        <li>API bridge to ELN/LIMS & data warehouse</li>
+                        <li>Dedicated success engineer & playbooks</li>
+                    </ul>
+                    <button class="btn btn-primary">Book strategy session</button>
+                </article>
+                <article class="plan-card" data-animate>
+                    <span class="plan-label">Enterprise Fabric</span>
+                    <h3>Cross-site governance for global orgs</h3>
+                    <ul>
+                        <li>Multi-tenant deployment & SSO/SOC2 controls</li>
+                        <li>Custom workflows & policy automation</li>
+                        <li>Executive reporting & audit dashboards</li>
+                    </ul>
+                    <button class="btn btn-ghost">Talk with us</button>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="team">
+    <section id="market" class="section market">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Team</h2>
-                <p class="section-subtitle">Building the future of molecular discovery</p>
-            </div>
-            <div class="team-content">
-                <div class="founder-card scroll-animate">
-                    <div class="founder-image">
-                        <img src="images/sness.jpg" alt="Steven Randolph Ness" class="founder-photo">
-                    </div>
-                    <div class="founder-info">
-                        <h3>Steven Randolph Ness</h3>
-                        <p class="founder-title">Founder & CEO</p>
-                        <p class="founder-bio">
-                            Structural biochemist, ML PhD, long-time Linux/software builder. 
-                            Deep PDB/AlphaFold ecosystem context with prior work in molecular 
-                            visualization and AI-assisted research tools.
-                        </p>
-                        <div class="founder-expertise">
-                            <span class="expertise-tag">Structural Biology</span>
-                            <span class="expertise-tag">Machine Learning</span>
-                            <span class="expertise-tag">Molecular Visualization</span>
-                            <span class="expertise-tag">AI Research</span>
-                        </div>
-                    </div>
+            <header class="section-header" data-animate>
+                <span class="eyebrow">Market signal</span>
+                <h2>Structural biology spend is compounding</h2>
+                <p>New modalities, AI-driven discovery, and compute-first biotech are expanding the addressable surface faster than tooling can keep up.</p>
+            </header>
+            <div class="market-stats">
+                <div class="market-card" data-animate>
+                    <h3>$20.3B</h3>
+                    <p>AI in drug discovery by 2030</p>
+                    <span>29.7% CAGR</span>
                 </div>
-                <div class="advisory scroll-animate">
-                    <h3>Advisory Bench (In Progress)</h3>
-                    <div class="advisory-areas">
-                        <div class="advisory-area">Structural Biology</div>
-                        <div class="advisory-area">Medicinal Chemistry</div>
-                        <div class="advisory-area">Platform Engineering</div>
-                        <div class="advisory-area">Business Development</div>
-                    </div>
+                <div class="market-card" data-animate>
+                    <h3>$94.8B</h3>
+                    <p>Bioinformatics market by 2032</p>
+                    <span>17% CAGR</span>
+                </div>
+                <div class="market-card" data-animate>
+                    <h3>$6.88B</h3>
+                    <p>3D protein analysis by 2034</p>
+                    <span>9.4% CAGR</span>
+                </div>
+            </div>
+            <div class="market-bottom" data-animate>
+                <div>
+                    <h4>Bottom-up view</h4>
+                    <p>50k structural and computational scientists × $1.5k ARR → $75M SAM.</p>
+                </div>
+                <div>
+                    <h4>Enterprise lift</h4>
+                    <p>$50k–$250k ACV with governance & integrations unlocks a $100M+ path.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="team" class="section team">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contact & Explore</h2>
-                <p class="section-subtitle">Connect with us and explore our platforms</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Ready to accelerate your research?</h3>
-                    <p>Connect with us to learn more about doi.bio and explore our collaborative platforms for molecular discovery.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-icon">📧</span>
-                            <a href="mailto:sness@sness.net">sness@sness.net</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">💼</span>
-                            <a href="https://www.linkedin.com/in/steven-ness/" target="_blank">LinkedIn Profile</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🌐</span>
-                            <a href="https://doi.bio" target="_blank">doi.bio</a>
-                        </div>
-                    </div>
-                    <div class="platform-links">
-                        <h4>Explore Our Platforms</h4>
-                        <div class="platform-grid">
-                            <a href="https://c.doi.bio" target="_blank" class="platform-link">
-                                <div class="platform-icon">📝</div>
-                                <div class="platform-info">
-                                    <h5>c.doi.bio</h5>
-                                    <p>Collaborative multiuser notebook</p>
-                                </div>
-                            </a>
-                            <a href="https://ci.doi.bio" target="_blank" class="platform-link">
-                                <div class="platform-icon">🧬</div>
-                                <div class="platform-info">
-                                    <h5>ci.doi.bio</h5>
-                                    <p>Collaborative viewer for molecules</p>
-                                </div>
-                            </a>
-                            <a href="https://ai.doi.bio" target="_blank" class="platform-link">
-                                <div class="platform-icon">🤖</div>
-                                <div class="platform-info">
-                                    <h5>ai.doi.bio</h5>
-                                    <p>Ask AI about your molecules</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <header class="section-header" data-animate>
+                <span class="eyebrow">Operators behind the platform</span>
+                <h2>Blending structural biology depth and ML rigor</h2>
+            </header>
+            <div class="team-grid">
+                <article class="team-card" data-animate>
+                    <img src="images/sness.jpg" alt="Steven Randolph Ness" class="team-photo" />
+                    <h3>Steven Randolph Ness</h3>
+                    <p class="team-role">Founder & CEO</p>
+                    <p class="team-bio">Structural biochemist, ML PhD, and long-time Linux builder. Deep PDB/AlphaFold ecosystem experience with prior molecular visualization & AI tooling.</p>
+                    <ul class="team-tags">
+                        <li>Structural Biology</li>
+                        <li>Machine Learning</li>
+                        <li>Molecular Visualization</li>
+                        <li>AI Research</li>
+                    </ul>
+                </article>
+                <article class="team-card" data-animate>
+                    <div class="team-placeholder">Advisory bench in progress</div>
+                    <p class="team-bio">Actively assembling leaders across medicinal chemistry, platform engineering, BD, and regulatory strategy to accelerate delivery.</p>
+                    <ul class="team-tags">
+                        <li>Medicinal Chemistry</li>
+                        <li>Platform Engineering</li>
+                        <li>Business Development</li>
+                        <li>Regulatory</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="contact" class="section contact">
+        <div class="container contact-wrap" data-animate>
+            <div class="contact-copy">
+                <span class="eyebrow">Let’s collaborate</span>
+                <h2>Ready to accelerate molecule decisioning?</h2>
+                <p>Drop us a note to join the private preview, see the roadmap, or share your workflows. We partner closely during rollout.</p>
+                <div class="contact-details">
+                    <a href="mailto:sness@sness.net">sness@sness.net</a>
+                    <a href="https://www.linkedin.com/in/steven-ness/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://doi.bio" target="_blank" rel="noopener">doi.bio</a>
+                </div>
+            </div>
+            <div class="contact-links">
+                <h4>Explore our live surfaces</h4>
+                <a href="https://c.doi.bio" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">📝</span>
+                    <div>
+                        <strong>c.doi.bio</strong>
+                        <p>Collaborative multiuser notebook</p>
+                    </div>
+                </a>
+                <a href="https://ci.doi.bio" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">🧬</span>
+                    <div>
+                        <strong>ci.doi.bio</strong>
+                        <p>Collaborative molecular viewer</p>
+                    </div>
+                </a>
+                <a href="https://ai.doi.bio" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">🤖</span>
+                    <div>
+                        <strong>ai.doi.bio</strong>
+                        <p>Ask AI about your molecules</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">doi.bio</span>
-                    <p>Intelligence Augmentation for Molecular Discovery</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#problem">Problem</a>
-                    <a href="#solution">Solution</a>
-                    <a href="#market">Market</a>
-                    <a href="#team">Team</a>
-                    <a href="#contact">Contact</a>
-                </div>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo">doi.bio</span>
+                <p>Intelligence Augmentation for Molecular Discovery</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 doi.bio. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#launch">Launch Tracks</a>
+                <a href="#market">Market</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
             </div>
+            <p class="footer-copy">© 2024 doi.bio. All rights reserved.</p>
         </div>
     </footer>
 

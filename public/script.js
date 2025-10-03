@@ -1,608 +1,164 @@
-// DOM Elements
+const navbar = document.querySelector('.navbar');
 const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const navLinksContainer = document.querySelector('.nav-links');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Mobile Navigation Toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+function closeMobileNav() {
+    hamburger?.classList.remove('active');
+    navLinksContainer?.classList.remove('active');
+}
 
-// Close mobile menu when clicking on a link
+if (hamburger && navLinksContainer) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinksContainer.classList.toggle('active');
+    });
+}
+
 navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = link.getAttribute('href');
+        const target = targetId ? document.querySelector(targetId) : null;
+
+        if (target) {
+            const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+        closeMobileNav();
     });
 });
 
-// Smooth scrolling for navigation links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+function setActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + 120;
+    let activeId = 'hero';
+
+    sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+            activeId = section.id;
         }
     });
-});
 
-// Navbar background on scroll
+    navLinks.forEach(link => {
+        const id = link.getAttribute('href');
+        if (id === `#${activeId}`) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 14, 19, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(10, 14, 19, 0.95)';
-    }
+    if (!navbar) return;
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    setActiveNavLink();
 });
 
-// Enhanced Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+setActiveNavLink();
 
+// Animate on scroll
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            
-            // Add staggered animation delays
-            const siblings = Array.from(entry.target.parentNode.children);
-            const index = siblings.indexOf(entry.target);
-            entry.target.style.animationDelay = `${index * 0.1}s`;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
-
-// Observe elements for animation with different animation types
-const animatedElements = document.querySelectorAll('.problem-card, .feature, .market-stat, .founder-card, .advisory');
-animatedElements.forEach(el => {
-    el.classList.add('scroll-animate');
-    observer.observe(el);
+}, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
 });
 
-// Special animations for different sections
-const leftAnimatedElements = document.querySelectorAll('.solution-visual');
-leftAnimatedElements.forEach(el => {
-    el.classList.add('scroll-animate-left');
-    observer.observe(el);
-});
+document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-const rightAnimatedElements = document.querySelectorAll('.solution-features');
-rightAnimatedElements.forEach(el => {
-    el.classList.add('scroll-animate-right');
-    observer.observe(el);
-});
-
-const scaleAnimatedElements = document.querySelectorAll('.hero-stats .stat');
-scaleAnimatedElements.forEach(el => {
-    el.classList.add('scroll-animate-scale');
-    observer.observe(el);
-});
-
-// Contact form handling (removed - no form present)
-
-// Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 24px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-        color: white;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Add to DOM
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-}
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroVisual = document.querySelector('.hero-visual');
-    
-    if (heroVisual) {
-        const rate = scrolled * -0.5;
-        heroVisual.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-// Typing animation for hero title
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing animation when page loads
-window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 50);
-    }
-});
-
-// Counter animation for stats
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    function updateCounter() {
-        start += increment;
-        if (start < target) {
-            element.textContent = Math.floor(start).toLocaleString();
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target.toLocaleString();
-        }
-    }
-    
-    updateCounter();
-}
-
-// Animate counters when they come into view
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumber = entry.target.querySelector('.stat-number');
-            if (statNumber && !statNumber.classList.contains('animated')) {
-                statNumber.classList.add('animated');
-                
-                // Extract number from text (e.g., "200M+" -> 200)
-                const text = statNumber.textContent;
-                const number = parseInt(text.replace(/[^\d]/g, ''));
-                const suffix = text.replace(/[\d]/g, '');
-                
-                if (number) {
-                    animateCounter(statNumber, number);
-                    statNumber.textContent = number.toLocaleString() + suffix;
-                }
-            }
-        }
-    });
-}, { threshold: 0.5 });
-
-// Observe stat numbers
-document.querySelectorAll('.stat-number').forEach(el => {
-    counterObserver.observe(el.closest('.stat'));
-});
-
-// Market stat counters
-document.querySelectorAll('.stat-value').forEach(el => {
-    counterObserver.observe(el.closest('.market-stat'));
-});
-
-// Enhanced molecule animation with particle trails
-function createMoleculeAnimation() {
-    const molecule = document.querySelector('.molecule');
-    if (!molecule) return;
-    
-    // Add random movement to atoms with smooth transitions
-    const atoms = molecule.querySelectorAll('.atom');
-    atoms.forEach((atom, index) => {
-        let currentX = 0;
-        let currentY = 0;
-        
-        setInterval(() => {
-            const randomX = (Math.random() - 0.5) * 15;
-            const randomY = (Math.random() - 0.5) * 15;
-            
-            currentX += randomX;
-            currentY += randomY;
-            
-            // Keep atoms within bounds
-            currentX = Math.max(-20, Math.min(20, currentX));
-            currentY = Math.max(-20, Math.min(20, currentY));
-            
-            atom.style.transition = 'transform 1s ease-in-out';
-            atom.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        }, 3000 + index * 800);
-    });
-    
-    // Add particle trail effects
-    createParticleTrails();
-}
-
-// Create floating particles around the molecule
-function createParticleTrails() {
-    const heroVisual = document.querySelector('.hero-visual');
-    if (!heroVisual) return;
-    
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'floating-particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(123, 215, 255, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatParticle ${5 + Math.random() * 10}s linear infinite;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 5}s;
-        `;
-        
-        heroVisual.appendChild(particle);
-    }
-}
-
-// Add particle animation keyframes
-const particleStyle = document.createElement('style');
-particleStyle.textContent = `
-    @keyframes floatParticle {
-        0% {
-            transform: translateY(0px) translateX(0px);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100px) translateX(${Math.random() * 50 - 25}px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(particleStyle);
-
-// Initialize enhanced molecule animation
-createMoleculeAnimation();
-
-// Mol* Viewer Initialization
+// Mol* viewer setup
 let molstarPlugin = null;
 
 async function initializeMolstarViewer() {
     const container = document.getElementById('molstar-viewer');
-    if (!container) return;
-    
+    if (!container || !window.MolstarPlugin) return;
+
     try {
-        // Initialize Mol* plugin
         molstarPlugin = new window.MolstarPlugin({
             target: container,
-            viewportBackgroundColor: '#0a0e13',
             layout: {
-                initial: {
-                    isExpanded: false,
-                    showControls: true
-                }
+                initial: { isExpanded: false, showControls: false }
             },
-            components: {
-                controls: {
-                    top: 'none',
-                    left: 'none',
-                    right: 'none',
-                    bottom: 'none'
-                }
-            }
+            viewportBackgroundColor: '#04070f'
         });
-        
-        // Load 1ERM structure from PDB
+
         await molstarPlugin.loadStructureFromUrl('https://files.rcsb.org/download/1ERM.pdb', 'pdb');
-        
-        // Apply custom styling
+
         molstarPlugin.canvas3d?.setProps({
-            renderer: {
-                backgroundColor: '#0a0e13'
-            }
+            renderer: { backgroundColor: '#04070f' }
         });
-        
-        // Set initial representation
-        molstarPlugin.managers.structure.hierarchy.current.structures.forEach(structure => {
-            const model = structure.models[0];
-            const chain = model.chainMap.get('A');
-            if (chain) {
-                molstarPlugin.managers.structure.component.add({
-                    type: 'ball-and-stick',
-                    colorTheme: { name: 'element-symbol' },
-                    sizeTheme: { name: 'uniform', value: 0.3 }
-                });
-                
-                // Add surface representation
-                molstarPlugin.managers.structure.component.add({
-                    type: 'molecular-surface',
-                    colorTheme: { name: 'element-symbol' },
-                    sizeTheme: { name: 'uniform', value: 0.3 },
-                    typeParams: { 
-                        type: 'isosurface',
-                        isoValue: 1.0,
-                        includeParent: false
-                    }
-                });
-            }
-        });
-        
-        console.log('Mol* viewer initialized successfully with 1ERM');
-        
     } catch (error) {
-        console.error('Error initializing Mol* viewer:', error);
-        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">Failed to load molecular viewer</div>';
+        console.error('Mol* viewer failed to load:', error);
+        container.innerHTML = '<div class="viewer-error">Viewer unavailable</div>';
     }
 }
 
-// Viewer control functions
-function resetView() {
-    if (molstarPlugin) {
-        molstarPlugin.canvas3d?.requestCameraReset();
-    }
+function resetViewer() {
+    molstarPlugin?.canvas3d?.requestCameraReset();
 }
 
 function toggleSurface() {
-    if (molstarPlugin) {
-        const components = molstarPlugin.managers.structure.component.state;
-        const surfaceComponents = components.filter(c => c.type === 'molecular-surface');
-        
-        if (surfaceComponents.length > 0) {
-            // Toggle visibility of surface components
-            surfaceComponents.forEach(comp => {
-                molstarPlugin.managers.structure.component.update(comp, { isHidden: !comp.isHidden });
-            });
-        }
+    if (!molstarPlugin) return;
+    const state = molstarPlugin.managers?.structure?.component?.state;
+    if (!state) return;
+
+    const surface = state.filter(item => item.type === 'molecular-surface');
+    if (!surface.length) {
+        molstarPlugin.managers.structure.component.add({
+            type: 'molecular-surface',
+            colorTheme: { name: 'element-symbol' },
+            sizeTheme: { name: 'uniform', value: 0.25 }
+        });
+        return;
     }
+
+    surface.forEach(item => {
+        molstarPlugin.managers.structure.component.update(item, { isHidden: !item.isHidden });
+    });
 }
 
 function highlightLigand() {
-    if (molstarPlugin) {
-        // Highlight ligand (EST - estradiol) in 1ERM
-        molstarPlugin.managers.structure.selection.set({
-            structure: molstarPlugin.managers.structure.hierarchy.current.structures[0],
-            loci: molstarPlugin.managers.structure.selection.queries.atoms({
-                resname: ['EST']
-            })
-        });
-        
-        // Apply highlight styling
-        molstarPlugin.managers.structure.component.add({
-            type: 'ball-and-stick',
-            colorTheme: { name: 'uniform', value: '#ff6b6b' },
-            sizeTheme: { name: 'uniform', value: 0.5 }
-        });
-        
-        // Clear selection after 3 seconds
-        setTimeout(() => {
-            molstarPlugin.managers.structure.selection.clear();
-        }, 3000);
-    }
+    if (!molstarPlugin) return;
+    const hierarchy = molstarPlugin.managers.structure.hierarchy.current;
+    const structure = hierarchy.structures?.[0];
+    if (!structure) return;
+
+    const loci = molstarPlugin.managers.structure.selection.queries.atoms({
+        resname: ['EST']
+    });
+
+    molstarPlugin.managers.structure.selection.set({ structure, loci });
+
+    molstarPlugin.managers.structure.component.add({
+        type: 'ball-and-stick',
+        colorTheme: { name: 'uniform', value: '#ff6b9a' },
+        sizeTheme: { name: 'uniform', value: 0.45 }
+    });
+
+    setTimeout(() => molstarPlugin.managers.structure.selection.clear(), 2500);
 }
 
-// Initialize Mol* viewer when DOM is loaded
+const viewerActions = {
+    reset: resetViewer,
+    surface: toggleSurface,
+    ligand: highlightLigand
+};
+
+document.addEventListener('click', (event) => {
+    const button = event.target.closest('.panel-btn');
+    if (!button) return;
+
+    const action = button.dataset.action;
+    viewerActions[action]?.();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a bit for the page to fully load
-    setTimeout(initializeMolstarViewer, 1000);
+    initializeMolstarViewer();
 });
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    // ESC key closes mobile menu
-    if (e.key === 'Escape') {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-    
-    // Arrow keys for section navigation
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const sections = ['hero', 'problem', 'solution', 'product', 'market', 'team', 'contact'];
-        const currentSection = getCurrentSection();
-        const currentIndex = sections.indexOf(currentSection);
-        
-        let nextIndex;
-        if (e.key === 'ArrowDown') {
-            nextIndex = Math.min(currentIndex + 1, sections.length - 1);
-        } else {
-            nextIndex = Math.max(currentIndex - 1, 0);
-        }
-        
-        const targetSection = document.getElementById(sections[nextIndex]);
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    }
-});
-
-// Get current section based on scroll position
-function getCurrentSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + 100;
-    
-    for (let section of sections) {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            return section.id;
-        }
-    }
-    
-    return 'hero';
-}
-
-// Update active nav link based on scroll position
-window.addEventListener('scroll', () => {
-    const currentSection = getCurrentSection();
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Add active class styles
-const style = document.createElement('style');
-style.textContent = `
-    .nav-link.active {
-        color: var(--accent-blue) !important;
-    }
-    
-    .nav-link.active::after {
-        width: 100% !important;
-    }
-    
-    .notification-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-    }
-    
-    .notification-close {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 0;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .notification-close:hover {
-        opacity: 0.8;
-    }
-`;
-document.head.appendChild(style);
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply debouncing to scroll events
-const debouncedScrollHandler = debounce(() => {
-    // Scroll-based animations and updates
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 14, 19, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(10, 14, 19, 0.95)';
-    }
-    
-    // Parallax effect
-    const scrolled = window.pageYOffset;
-    const heroVisual = document.querySelector('.hero-visual');
-    if (heroVisual) {
-        const rate = scrolled * -0.5;
-        heroVisual.style.transform = `translateY(${rate}px)`;
-    }
-    
-    // Update active nav link
-    const currentSection = getCurrentSection();
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-}, 10);
-
-window.addEventListener('scroll', debouncedScrollHandler);
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('doi.bio website loaded successfully!');
-    
-    // Add loading class to body initially
-    document.body.classList.add('loading');
-    
-    // Remove loading class after a short delay
-    setTimeout(() => {
-        document.body.classList.remove('loading');
-    }, 500);
-});
-
-// Service Worker registration for PWA capabilities (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
