@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Intersection Observer for animations
+// Enhanced Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -53,14 +53,41 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
+            entry.target.classList.add('animate');
+            
+            // Add staggered animation delays
+            const siblings = Array.from(entry.target.parentNode.children);
+            const index = siblings.indexOf(entry.target);
+            entry.target.style.animationDelay = `${index * 0.1}s`;
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
-const animatedElements = document.querySelectorAll('.problem-card, .feature, .demo-step, .market-stat, .founder-card, .advisory');
-animatedElements.forEach(el => observer.observe(el));
+// Observe elements for animation with different animation types
+const animatedElements = document.querySelectorAll('.problem-card, .feature, .market-stat, .founder-card, .advisory');
+animatedElements.forEach(el => {
+    el.classList.add('scroll-animate');
+    observer.observe(el);
+});
+
+// Special animations for different sections
+const leftAnimatedElements = document.querySelectorAll('.solution-visual');
+leftAnimatedElements.forEach(el => {
+    el.classList.add('scroll-animate-left');
+    observer.observe(el);
+});
+
+const rightAnimatedElements = document.querySelectorAll('.solution-features');
+rightAnimatedElements.forEach(el => {
+    el.classList.add('scroll-animate-right');
+    observer.observe(el);
+});
+
+const scaleAnimatedElements = document.querySelectorAll('.hero-stats .stat');
+scaleAnimatedElements.forEach(el => {
+    el.classList.add('scroll-animate-scale');
+    observer.observe(el);
+});
 
 // Contact form handling (removed - no form present)
 
@@ -208,23 +235,85 @@ document.querySelectorAll('.stat-value').forEach(el => {
     counterObserver.observe(el.closest('.market-stat'));
 });
 
-// Molecule animation controls
+// Enhanced molecule animation with particle trails
 function createMoleculeAnimation() {
     const molecule = document.querySelector('.molecule');
     if (!molecule) return;
     
-    // Add random movement to atoms
+    // Add random movement to atoms with smooth transitions
     const atoms = molecule.querySelectorAll('.atom');
     atoms.forEach((atom, index) => {
+        let currentX = 0;
+        let currentY = 0;
+        
         setInterval(() => {
-            const randomX = (Math.random() - 0.5) * 10;
-            const randomY = (Math.random() - 0.5) * 10;
-            atom.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        }, 2000 + index * 500);
+            const randomX = (Math.random() - 0.5) * 15;
+            const randomY = (Math.random() - 0.5) * 15;
+            
+            currentX += randomX;
+            currentY += randomY;
+            
+            // Keep atoms within bounds
+            currentX = Math.max(-20, Math.min(20, currentX));
+            currentY = Math.max(-20, Math.min(20, currentY));
+            
+            atom.style.transition = 'transform 1s ease-in-out';
+            atom.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }, 3000 + index * 800);
     });
+    
+    // Add particle trail effects
+    createParticleTrails();
 }
 
-// Initialize molecule animation
+// Create floating particles around the molecule
+function createParticleTrails() {
+    const heroVisual = document.querySelector('.hero-visual');
+    if (!heroVisual) return;
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(123, 215, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle ${5 + Math.random() * 10}s linear infinite;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        
+        heroVisual.appendChild(particle);
+    }
+}
+
+// Add particle animation keyframes
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes floatParticle {
+        0% {
+            transform: translateY(0px) translateX(0px);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) translateX(${Math.random() * 50 - 25}px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyle);
+
+// Initialize enhanced molecule animation
 createMoleculeAnimation();
 
 // Keyboard navigation
