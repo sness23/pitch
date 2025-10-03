@@ -2,7 +2,6 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
-const contactForm = document.getElementById('contactForm');
 
 // Mobile Navigation Toggle
 hamburger.addEventListener('click', () => {
@@ -63,40 +62,7 @@ const observer = new IntersectionObserver((entries) => {
 const animatedElements = document.querySelectorAll('.problem-card, .feature, .demo-step, .market-stat, .founder-card, .advisory');
 animatedElements.forEach(el => observer.observe(el));
 
-// Contact form handling
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    // Show loading state
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    contactForm.classList.add('loading');
-    
-    try {
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        // Simulate API call (replace with actual endpoint)
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Show success message
-        showNotification('Thank you! We\'ll be in touch soon.', 'success');
-        contactForm.reset();
-        
-    } catch (error) {
-        // Show error message
-        showNotification('Something went wrong. Please try again.', 'error');
-    } finally {
-        // Reset button state
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        contactForm.classList.remove('loading');
-    }
-});
+// Contact form handling (removed - no form present)
 
 // Notification system
 function showNotification(message, type = 'info') {

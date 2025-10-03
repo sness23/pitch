@@ -742,17 +742,19 @@ section {
     flex-shrink: 0;
 }
 
-.avatar-placeholder {
+.founder-photo {
     width: 120px;
     height: 120px;
-    background: var(--gradient-primary);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
+    object-fit: cover;
+    border: 3px solid var(--accent-blue);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-normal);
+}
+
+.founder-photo:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
 }
 
 .founder-info h3 {
@@ -821,10 +823,14 @@ section {
 
 /* Contact Section */
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    display: flex;
+    justify-content: center;
     align-items: start;
+}
+
+.contact-info {
+    max-width: 800px;
+    text-align: center;
 }
 
 .contact-info h3 {
@@ -853,8 +859,72 @@ section {
     color: var(--text-secondary);
 }
 
+.contact-item a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.contact-item a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+}
+
 .contact-icon {
     font-size: 1.25rem;
+}
+
+.platform-links {
+    margin-top: 40px;
+}
+
+.platform-links h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.platform-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: var(--transition-normal);
+}
+
+.platform-link:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-blue);
+}
+
+.platform-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.platform-info h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.platform-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 .contact-form {
@@ -972,8 +1042,11 @@ section {
     }
     
     .contact-content {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        flex-direction: column;
+    }
+    
+    .contact-info {
+        max-width: 100%;
     }
 }
 
