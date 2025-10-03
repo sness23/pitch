@@ -316,6 +316,128 @@ document.head.appendChild(particleStyle);
 // Initialize enhanced molecule animation
 createMoleculeAnimation();
 
+// Mol* Viewer Initialization
+let molstarPlugin = null;
+
+async function initializeMolstarViewer() {
+    const container = document.getElementById('molstar-viewer');
+    if (!container) return;
+    
+    try {
+        // Initialize Mol* plugin
+        molstarPlugin = new window.MolstarPlugin({
+            target: container,
+            viewportBackgroundColor: '#0a0e13',
+            layout: {
+                initial: {
+                    isExpanded: false,
+                    showControls: true
+                }
+            },
+            components: {
+                controls: {
+                    top: 'none',
+                    left: 'none',
+                    right: 'none',
+                    bottom: 'none'
+                }
+            }
+        });
+        
+        // Load 1ERM structure from PDB
+        await molstarPlugin.loadStructureFromUrl('https://files.rcsb.org/download/1ERM.pdb', 'pdb');
+        
+        // Apply custom styling
+        molstarPlugin.canvas3d?.setProps({
+            renderer: {
+                backgroundColor: '#0a0e13'
+            }
+        });
+        
+        // Set initial representation
+        molstarPlugin.managers.structure.hierarchy.current.structures.forEach(structure => {
+            const model = structure.models[0];
+            const chain = model.chainMap.get('A');
+            if (chain) {
+                molstarPlugin.managers.structure.component.add({
+                    type: 'ball-and-stick',
+                    colorTheme: { name: 'element-symbol' },
+                    sizeTheme: { name: 'uniform', value: 0.3 }
+                });
+                
+                // Add surface representation
+                molstarPlugin.managers.structure.component.add({
+                    type: 'molecular-surface',
+                    colorTheme: { name: 'element-symbol' },
+                    sizeTheme: { name: 'uniform', value: 0.3 },
+                    typeParams: { 
+                        type: 'isosurface',
+                        isoValue: 1.0,
+                        includeParent: false
+                    }
+                });
+            }
+        });
+        
+        console.log('Mol* viewer initialized successfully with 1ERM');
+        
+    } catch (error) {
+        console.error('Error initializing Mol* viewer:', error);
+        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">Failed to load molecular viewer</div>';
+    }
+}
+
+// Viewer control functions
+function resetView() {
+    if (molstarPlugin) {
+        molstarPlugin.canvas3d?.requestCameraReset();
+    }
+}
+
+function toggleSurface() {
+    if (molstarPlugin) {
+        const components = molstarPlugin.managers.structure.component.state;
+        const surfaceComponents = components.filter(c => c.type === 'molecular-surface');
+        
+        if (surfaceComponents.length > 0) {
+            // Toggle visibility of surface components
+            surfaceComponents.forEach(comp => {
+                molstarPlugin.managers.structure.component.update(comp, { isHidden: !comp.isHidden });
+            });
+        }
+    }
+}
+
+function highlightLigand() {
+    if (molstarPlugin) {
+        // Highlight ligand (EST - estradiol) in 1ERM
+        molstarPlugin.managers.structure.selection.set({
+            structure: molstarPlugin.managers.structure.hierarchy.current.structures[0],
+            loci: molstarPlugin.managers.structure.selection.queries.atoms({
+                resname: ['EST']
+            })
+        });
+        
+        // Apply highlight styling
+        molstarPlugin.managers.structure.component.add({
+            type: 'ball-and-stick',
+            colorTheme: { name: 'uniform', value: '#ff6b6b' },
+            sizeTheme: { name: 'uniform', value: 0.5 }
+        });
+        
+        // Clear selection after 3 seconds
+        setTimeout(() => {
+            molstarPlugin.managers.structure.selection.clear();
+        }, 3000);
+    }
+}
+
+// Initialize Mol* viewer when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for the page to fully load
+    setTimeout(initializeMolstarViewer, 1000);
+});
+
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
     // ESC key closes mobile menu

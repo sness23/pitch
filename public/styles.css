@@ -634,6 +634,105 @@ section {
     align-items: center;
 }
 
+/* Mol* Viewer Styles */
+.molstar-viewer-container {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin-top: 32px;
+    width: 100%;
+    max-width: 800px;
+    transition: var(--transition-normal);
+}
+
+.molstar-viewer-container:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(123, 215, 255, 0.1);
+    border-color: var(--accent-blue);
+}
+
+.viewer-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(123, 215, 255, 0.1) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.viewer-header h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.viewer-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.molstar-viewer {
+    width: 100%;
+    height: 400px;
+    background: var(--primary-bg);
+    position: relative;
+}
+
+.viewer-controls {
+    padding: 16px 24px;
+    background: var(--tertiary-bg);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.viewer-btn {
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: var(--font-family);
+}
+
+.viewer-btn:hover {
+    background: var(--accent-blue);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(123, 215, 255, 0.3);
+}
+
+.viewer-btn:active {
+    transform: translateY(0);
+}
+
+/* Mol* Custom Theme */
+.molstar-viewer .msp-plugin {
+    background: var(--primary-bg) !important;
+}
+
+.molstar-viewer .msp-plugin .msp-plugin-controls {
+    background: var(--secondary-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.molstar-viewer .msp-plugin .msp-plugin-controls button {
+    background: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.molstar-viewer .msp-plugin .msp-plugin-controls button:hover {
+    background: var(--accent-blue) !important;
+    color: white !important;
+}
+
 .demo-screenshots {
     margin-top: 32px;
     display: flex;
@@ -1339,6 +1438,21 @@ section {
     .footer-links {
         justify-content: center;
         flex-wrap: wrap;
+    }
+    
+    /* Mol* Viewer Mobile Styles */
+    .molstar-viewer {
+        height: 300px;
+    }
+    
+    .viewer-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .viewer-btn {
+        width: 100%;
+        text-align: center;
     }
 }
 

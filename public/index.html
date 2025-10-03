@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Mol* (MolStar) Viewer -->
+    <script type="text/javascript" src="https://unpkg.com/molstar@3.0.0/build/viewer/molstar.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -169,6 +171,18 @@
                     <div class="demo-screenshots">
                         <img src="images/assn0.png" alt="doi.bio Interface Screenshot 1" class="demo-screenshot">
                         <img src="images/assn1.png" alt="doi.bio Interface Screenshot 2" class="demo-screenshot">
+                    </div>
+                    <div class="molstar-viewer-container">
+                        <div class="viewer-header">
+                            <h4>Live Molecular Visualization</h4>
+                            <p>1ERM - Estrogen Receptor Alpha with Estradiol</p>
+                        </div>
+                        <div id="molstar-viewer" class="molstar-viewer"></div>
+                        <div class="viewer-controls">
+                            <button class="viewer-btn" onclick="resetView()">Reset View</button>
+                            <button class="viewer-btn" onclick="toggleSurface()">Toggle Surface</button>
+                            <button class="viewer-btn" onclick="highlightLigand()">Highlight Ligand</button>
+                        </div>
                     </div>
                 </div>
                 <div class="solution-features scroll-animate-right">
