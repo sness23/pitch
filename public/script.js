@@ -86,7 +86,7 @@ async function initializeMolstarViewer() {
             layout: {
                 initial: { isExpanded: false, showControls: false }
             },
-            viewportBackgroundColor: '#04070f'
+            viewportBackgroundColor: '#000040'
         });
 
         await molstarPlugin.loadStructureFromUrl('https://files.rcsb.org/download/1ERM.pdb', 'pdb');

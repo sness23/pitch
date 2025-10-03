@@ -16,7 +16,7 @@ app.use(helmet({
             fontSrc: ["'self'", "https://fonts.gstatic.com"],
             imgSrc: ["'self'", "data:", "https:", "blob:"],
             scriptSrc: ["'self'", "'unsafe-eval'", "https://unpkg.com"],
-            connectSrc: ["'self'", "https://files.rcsb.org"],
+            connectSrc: ["'self'", "https://files.rcsb.org", "blob:", "data:"],
             workerSrc: ["'self'", "blob:"],
         },
     },
