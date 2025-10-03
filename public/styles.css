@@ -428,9 +428,9 @@ section {
 
 /* Solution Section */
 .solution-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
     align-items: center;
 }
 
@@ -507,9 +507,11 @@ section {
 }
 
 .solution-features {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 32px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .feature {
@@ -1027,8 +1029,12 @@ section {
     }
     
     .solution-content {
+        gap: 40px;
+    }
+    
+    .solution-features {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 24px;
     }
     
     .market-content {
