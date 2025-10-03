@@ -1,7 +1,7 @@
 :root {
-  --bg-dark: #0a0a0f;
-  --bg-darker: #050508;
-  --bg-card: #12121a;
+  --bg-dark: #000040;
+  --bg-darker: #000030;
+  --bg-card: #000050;
   --text-primary: #ffffff;
   --text-secondary: #a0a0b8;
   --text-muted: #6b6b7f;
@@ -187,12 +187,32 @@ body {
   50% { opacity: 0.8; }
 }
 
-.hero-content {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
   z-index: 1;
   position: relative;
+}
+
+.hero-content {
+  text-align: left;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-image {
+  z-index: 1;
+  position: relative;
+}
+
+.hero-screenshot {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
 }
 
 .hero-badge {
@@ -235,30 +255,24 @@ body {
   color: var(--text-secondary);
   margin-bottom: 3rem;
   line-height: 1.7;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .hero-cta {
   display: flex;
   gap: 1.5rem;
-  justify-content: center;
   margin-bottom: 4rem;
   flex-wrap: wrap;
 }
 
 .hero-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 3rem;
-  margin-top: 5rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--border-subtle);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
 .stat {
-  text-align: center;
+  text-align: left;
 }
 
 .stat-value {
@@ -513,6 +527,13 @@ body {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.workspace-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
 }
 
 .workspace-header {
@@ -942,10 +963,27 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .hero-layout,
   .solution-layout,
   .contact-wrapper {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
   }
 
   .market-card.large {

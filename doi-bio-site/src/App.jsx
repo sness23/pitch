@@ -44,33 +44,38 @@ function App() {
       <section className="hero" ref={heroRef}>
         <div className="hero-gradient"></div>
         <div className="container">
-          <div className="hero-content" data-animate>
-            <div className="hero-badge">Intelligence Augmentation Platform</div>
-            <h1 className="hero-title">
-              Where papers meet proteins.
-              <span className="gradient-text"> Where teams move faster.</span>
-            </h1>
-            <p className="hero-subtitle">
-              doi.bio unifies AI-powered literature synthesis with interactive molecular context.
-              Structural biologists cut onboarding time in half and make structurally-aware decisions with confidence.
-            </p>
-            <div className="hero-cta">
-              <a href="#contact" className="btn-primary">Request Private Preview</a>
-              <a href="#solution" className="btn-secondary">Explore Platform →</a>
+          <div className="hero-layout">
+            <div className="hero-content" data-animate>
+              <div className="hero-badge">Intelligence Augmentation Platform</div>
+              <h1 className="hero-title">
+                Where papers meet proteins.
+                <span className="gradient-text"> Where teams move faster.</span>
+              </h1>
+              <p className="hero-subtitle">
+                doi.bio unifies AI-powered literature synthesis with interactive molecular context.
+                Structural biologists cut onboarding time in half and make structurally-aware decisions with confidence.
+              </p>
+              <div className="hero-cta">
+                <a href="#contact" className="btn-primary">Request Private Preview</a>
+                <a href="#solution" className="btn-secondary">Explore Platform →</a>
+              </div>
+              <div className="hero-stats">
+                <div className="stat" data-animate>
+                  <div className="stat-value">200M+</div>
+                  <div className="stat-label">AlphaFold Structures</div>
+                </div>
+                <div className="stat" data-animate>
+                  <div className="stat-value">243K+</div>
+                  <div className="stat-label">PDB Entries</div>
+                </div>
+                <div className="stat" data-animate>
+                  <div className="stat-value">50%</div>
+                  <div className="stat-label">Faster Onboarding</div>
+                </div>
+              </div>
             </div>
-            <div className="hero-stats">
-              <div className="stat" data-animate>
-                <div className="stat-value">200M+</div>
-                <div className="stat-label">AlphaFold Structures</div>
-              </div>
-              <div className="stat" data-animate>
-                <div className="stat-value">243K+</div>
-                <div className="stat-label">PDB Entries</div>
-              </div>
-              <div className="stat" data-animate>
-                <div className="stat-value">50%</div>
-                <div className="stat-label">Faster Onboarding</div>
-              </div>
+            <div className="hero-image" data-animate>
+              <img src="/aiscreen.png" alt="doi.bio AI workspace" className="hero-screenshot" />
             </div>
           </div>
         </div>
