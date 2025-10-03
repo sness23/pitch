@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>doi.bio — Pre-Seed Pitch Deck (HTML)</title>
+    <style>
+:root {
+  --bg: #0b0f14;
+  --fg: #e7eef7;
+  --muted: #a9b4c2;
+  --accent: #7bd7ff;
+  --accent-2: #9ef0a6;
+  --card: #111821;
+  --border: #1f2a36;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--sans); line-height: 1.6;
+}
+.container {
+  max-width: 980px; margin: 0 auto; padding: 32px 20px 80px;
+}
+header { margin-bottom: 24px; }
+h1 { font-size: 2rem; margin: 0 0 8px; }
+h2 { font-size: 1.35rem; margin: 28px 0 8px; }
+h3 { font-size: 1.05rem; margin: 18px 0 6px; color: var(--muted); }
+.card {
+  background: linear-gradient(180deg, rgba(17,24,33,0.9), rgba(17,24,33,0.85));
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 18px 16px; margin: 16px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.slide-number {
+  font: 600 0.75rem var(--mono); color: var(--muted); letter-spacing: 0.02em;
+  border-bottom: 1px dashed var(--border); padding-bottom: 6px; margin-bottom: 10px;
+}
+ul { margin: 10px 0 0 1.1rem; padding: 0; }
+li { margin: 6px 0; }
+details {
+  background: #0e141c; border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; margin-top: 12px;
+}
+summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+footer {
+  margin-top: 48px; color: var(--muted); font-size: 0.9rem;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.toc {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;
+  margin: 16px 0 24px;
+}
+.toc a {
+  display: block; padding: 8px 10px; border: 1px solid var(--border); border-radius: 10px;
+  background: #0f1720;
+}
+.kicker { color: var(--muted); font-size: 0.95rem; }
+</style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>doi.bio — Pre-Seed Pitch Deck</h1>
+        <div class="kicker">Where papers meet proteins • Founder: Steven Randolph Ness</div>
+      </header>
+
+      <h3>Table of Contents</h3>
+      <nav class="toc">
+        <a href="#slide-1">1. doi.bio — Intelligence Augmentation for Molecular Discovery</a><a href="#slide-2">2. Problem — R&amp;D lives in two places (papers &amp; proteins), but tools don’t</a><a href="#slide-3">3. Solution — doi.bio unified, structure‑aware workspace</a><a href="#slide-4">4. Why Now — data abundance + AI adoption + ROI pressure</a><a href="#slide-5">5. Product (v1) — demo flow</a><a href="#slide-6">6. Differentiation (Moat)</a><a href="#slide-7">7. Market — top‑down signals</a><a href="#slide-8">8. Market — bottom‑up model (SAM / SOM)</a><a href="#slide-9">9. Business Model &amp; Pricing</a><a href="#slide-10">10. GTM — design‑partner → product‑led → enterprise expand</a><a href="#slide-11">11. Traction &amp; 12‑Month Roadmap</a><a href="#slide-12">12. Team</a><a href="#slide-13">13. The Ask — $1.5–$2.5M pre‑seed</a><a href="#slide-14">14. Sources (for footnotes / appendix)</a>
+      </nav>
+
+      
+<section class="card" id="slide-1">
+  <div class="slide-number">Slide 1</div>
+  <h2>doi.bio — Intelligence Augmentation for Molecular Discovery</h2>
+  <p>Where papers meet proteins • Founder: Steven Randolph Ness</p>
+
+  
+</section>
+
+<section class="card" id="slide-2">
+  <div class="slide-number">Slide 2</div>
+  <h2>Problem — R&amp;D lives in two places (papers &amp; proteins), but tools don’t</h2>
+  <ul>
+<li>Fragmented stack: PDFs, ELN notes, viewers, docking/MD, ad‑hoc scripts → brittle hand‑offs and lost rationale.</li>
+<li>Volume shock: ~243k PDB entries and &gt;200M AlphaFold predictions — signal buried in noise.</li>
+<li>Every month counts: rising R&amp;D costs and pressure to make faster, better decisions.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Emphasize the switching cost across 8–12 tools and the loss of reasoning. Underscore scale: ~243k PDB entries; AlphaFold &gt;200M; executives feel the time pressure.</p></div></details>
+</section>
+
+<section class="card" id="slide-3">
+  <div class="slide-number">Slide 3</div>
+  <h2>Solution — doi.bio unified, structure‑aware workspace</h2>
+  <ul>
+<li>Left pane: interlinked, Obsidian‑style notes; AI extracts targets/ligands/assays, builds causal maps, proposes next steps.</li>
+<li>Right pane: live structure context (PDB/AlphaFold), pockets &amp; variants, figure‑ready views, one‑click micro‑workflows.</li>
+<li>Collaborative intelligence: decisions + rationale captured as reusable org IP.</li>
+<li>APIs &amp; automations: orchestration across public sources and private compute.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Keep the scientist in the loop; we augment reasoning rather than replace it.</p></div></details>
+</section>
+
+<section class="card" id="slide-4">
+  <div class="slide-number">Slide 4</div>
+  <h2>Why Now — data abundance + AI adoption + ROI pressure</h2>
+  <ul>
+<li>Exploding structure availability; AFDB opened broad coverage; PDB growth continues.</li>
+<li>Budgets for AI‑enabled discovery are scaling; buyers seek tools that operationalize AI.</li>
+<li>R&amp;D IRR pressure: tools that compress cycle time and reduce dead‑ends win budgets.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Anchor timing: abundance of structures, AI normalization, economic pressure.</p></div></details>
+</section>
+
+<section class="card" id="slide-5">
+  <div class="slide-number">Slide 5</div>
+  <h2>Product (v1) — demo flow</h2>
+  <ul>
+<li>Paste a DOI: AI extracts entities &amp; claims → jump to residues/pockets in 3D.</li>
+<li>Click “Compare poses”: overlay ligands from cited structures; flag clashes or unsatisfied donors/acceptors.</li>
+<li>Run a “Methods template”: prep small MD or docking; results round‑trip into the narrative with provenance.</li>
+<li>Share a story: new teammates onboard in hours, not weeks.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Tell a quick story from paper to 3D to small compute and back into an auditable narrative.</p></div></details>
+</section>
+
+<section class="card" id="slide-6">
+  <div class="slide-number">Slide 6</div>
+  <h2>Differentiation (Moat)</h2>
+  <ul>
+<li>Reasoning, not just results: we capture the *why*, compounding as internal IP.</li>
+<li>Structure‑aware knowledge graph: literature claims anchored to coordinates, pockets, residues.</li>
+<li>Composable micro‑workflows: org‑specific playbooks that become sticky and defensible.</li>
+<li>Interoperability‑first: reads public sources; links private repos/compute; exports cleanly.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Position vs. point tools, ELNs, and ‘AI that generates’ platforms — we connect the middle.</p></div></details>
+</section>
+
+<section class="card" id="slide-7">
+  <div class="slide-number">Slide 7</div>
+  <h2>Market — top‑down signals</h2>
+  <ul>
+<li>AI in Drug Discovery: $1.5B (2023) → ~$20B by 2030 (~29–30% CAGR).</li>
+<li>Alternate cut: $1.86B (2024) → ~$6.9B by 2029 (~30% CAGR).</li>
+<li>Bioinformatics software/services: tens of billions today with double‑digit growth.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Use ranges to show momentum; investors know estimates vary but agree on growth.</p></div></details>
+</section>
+
+<section class="card" id="slide-8">
+  <div class="slide-number">Slide 8</div>
+  <h2>Market — bottom‑up model (SAM / SOM)</h2>
+  <ul>
+<li>Initial core users (pharma, biotech, CROs, institutes): ~40k–60k computational/structural scientists.</li>
+<li>Starter SAM: 50k users × $1.5k ARR ≈ $75M targetable near‑term.</li>
+<li>Enterprise overlays lift ACV to $50k–$250k per logo → path to $100M+ with ~500 logos.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Clarify assumptions; indicate we’ll refine with design‑partner usage data.</p></div></details>
+</section>
+
+<section class="card" id="slide-9">
+  <div class="slide-number">Slide 9</div>
+  <h2>Business Model &amp; Pricing</h2>
+  <ul>
+<li>SaaS per‑seat: Starter $99–$149/mo; Pro $299–$399/mo (incl. compute credits &amp; private adapters).</li>
+<li>Enterprise: $50k–$250k ACV (SSO, audit, VPC connectors, compliance).</li>
+<li>Add‑ons: secure compute packs (docking/MD), regulated‑data controls, graph API.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Price bands signal value and leave room for packaging evolution.</p></div></details>
+</section>
+
+<section class="card" id="slide-10">
+  <div class="slide-number">Slide 10</div>
+  <h2>GTM — design‑partner → product‑led → enterprise expand</h2>
+  <ul>
+<li>Design‑partner program: 5–10 labs/biotechs to harden micro‑workflows on real targets.</li>
+<li>Product‑led: academic‑friendly tier; shareable narratives/figures create viral loops.</li>
+<li>Enterprise wedge: land in one therapeutic team; expand to TA/platform/development.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Show a credible motion for both bottoms‑up and enterprise sales.</p></div></details>
+</section>
+
+<section class="card" id="slide-11">
+  <div class="slide-number">Slide 11</div>
+  <h2>Traction &amp; 12‑Month Roadmap</h2>
+  <ul>
+<li>Early traction: prototype in N hands; X weekly actives; Y narratives; Z inbound pilots (update live).</li>
+<li>Roadmap:</li>
+<li>Q1–Q2: Enterprise security/SSO; graph querying; figure pipelines; first compute providers.</li>
+<li>Q3: Assay‑aware templates; SAR overlays; sequence/variant intelligence (UniProt‑linked).</li>
+<li>Q4: Private model adapters; audit trails; CRO handoff packs.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Leave placeholders to swap in live numbers before the meeting.</p></div></details>
+</section>
+
+<section class="card" id="slide-12">
+  <div class="slide-number">Slide 12</div>
+  <h2>Team</h2>
+  <ul>
+<li>Steven Randolph Ness — structural biochemist, ML PhD, long‑time Linux/software builder.</li>
+<li>Deep PDB/AlphaFold ecosystem context; prior work in molecular visualization and AI‑assisted research.</li>
+<li>Advisory bench (in progress): structural biology, med‑chem, platform eng, BD.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Underscore founder‑market fit; call out advisory recruiting.</p></div></details>
+</section>
+
+<section class="card" id="slide-13">
+  <div class="slide-number">Slide 13</div>
+  <h2>The Ask — $1.5–$2.5M pre‑seed</h2>
+  <ul>
+<li>Runway: 18–24 months to $500k–$1M ARR with 8–12 enterprise pilots.</li>
+<li>Use of funds: engineering (graph, viewer, integrations), security/compliance, GTM.</li>
+<li>Milestones: v1 shipped; 2–3 case studies showing days→hours triage and &gt;50% faster onboarding.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Close with crisp milestones and capital efficiency.</p></div></details>
+</section>
+
+<section class="card" id="slide-14">
+  <div class="slide-number">Slide 14</div>
+  <h2>Sources (for footnotes / appendix)</h2>
+  <ul>
+<li>RCSB PDB Statistics (2024–2025).</li>
+<li>AlphaFold Database (EMBL‑EBI) overview and NAR updates (&gt;200M predictions).</li>
+<li>AI in Drug Discovery market: Grand View Research (2023), MarketsandMarkets (2024).</li>
+<li>Bioinformatics software/services market: industry analyst reports (2024–2025).</li>
+<li>Deloitte (2024) pharma R&amp;D cost per asset.</li>
+</ul>
+
+  <details><summary>Speaker notes</summary><div><p>Use these as footnotes per slide; replace with exact citations/links you prefer.</p></div></details>
+</section>
+
+
+      <footer>
+        <div>Exported from PowerPoint to HTML automatically.</div>
+        <div>Original PPTX: <a href="doi_bio_preseed_pitch_deck_steven_ness.pptx" download>download here</a></div>
+      </footer>
+    </div>
+  </body>
+</html>
